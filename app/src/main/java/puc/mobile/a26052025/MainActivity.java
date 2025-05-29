@@ -6,9 +6,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +17,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private ListView lista;
     private ArrayList<User> usuarios = new ArrayList<>();
     private UserAdapter adapter;
@@ -28,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        configurarInterface();
-
-        configurarListeners();
-    }
-
-    private void configurarInterface() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -56,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
             } catch (Exception e) {
-                Toast.makeText(this, "Erro ao processar dados", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Erro ao processar dados: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }, error -> {
-            Toast.makeText(this, "Erro de conexão", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erro de conexão: " + error.getMessage(), Toast.LENGTH_SHORT).show();
         });
-    }
 
-    private void configurarListeners() {
-
+        queue.add(request);
     }
 }

@@ -36,7 +36,7 @@ public class UserAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = LayoutInflater.from(context).inflate(android.R.layout.simple_expandable_list_item_2, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_lista, parent, false);
         TextView t1 = v.findViewById(R.id.user_name);
         TextView t2 = v.findViewById(R.id.user_email);
         TextView t3 = v.findViewById(R.id.user_phone);
@@ -44,7 +44,7 @@ public class UserAdapter extends BaseAdapter {
         User u = lista.get(position);
         t1.setText(u.getName());
         t2.setText(u.getEmail());
-        t2.setText(u.getPhone());
+        t3.setText(u.getPhone());
         return v;
     }
 }
